@@ -1,0 +1,18 @@
+/* Interaction states (hover / active / focus) carried over from the prototype. */
+.ix-f0:focus { transform:translateY(0) !important; }
+.ix-h1:hover { color:#2E1A16 !important; }
+.ix-h2:hover { background-color:#2E1A16 !important; color:#FBF7F2 !important; }
+.ix-a3:active { transform:scale(.97) !important; }
+.ix-h4:hover { background-position:-20% 0 !important; color:#FBF7F2 !important; }
+.ix-h5:hover { background-color:#FBF7F2 !important; border-color:#6B3F35 !important; color:#2E1A16 !important; }
+.ix-h6:hover { background-color:#F3E8DC !important; }
+.ix-h7:hover { transform:translateY(-6px) !important; box-shadow:0 32px 50px -30px rgba(46,26,22,.4) !important; }
+.ix-h8:hover { background-color:#6B3F35 !important; color:#FBF7F2 !important; }
+.ix-f9:focus { border-color:#C99A5B !important; }
+.ix-ha:hover { background-color:#E7C3B5 !important; color:#2E1A16 !important; }
+.ix-hb:hover { background-color:#E7C3B5 !important; }
+.ix-fc:focus { border-color:#6B3F35 !important; box-shadow:0 0 0 3px rgba(201,154,91,.35) !important; }
+.ix-hd:hover { background-position:-20% 0 !important; }
+.ix-he:hover { background-color:#F3E8DC !important; color:#2E1A16 !important; }
+.ix-hf:hover { color:#FBF7F2 !important; }
+.ix-ag:active { transform:scale(.95) !important; }
