@@ -4,12 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef, type PointerEvent } from "react";
 import { useSite } from "@/components/providers/SiteProvider";
+import { useBottleFlight } from "@/hooks/useBottleFlight";
 import { useMist } from "@/hooks/useMist";
 
 export function Hero() {
   const { goFinder } = useSite();
   const { mistRef, emitRef } = useMist();
   const lastEmit = useRef(0);
+  const heroRef = useRef<HTMLElement>(null);
+  const flyRef = useRef<HTMLDivElement>(null);
+  useBottleFlight(flyRef, heroRef, "finder-card");
 
   const heroMove = (e: PointerEvent<HTMLElement>) => {
     if (!emitRef.current) return;
@@ -25,12 +29,16 @@ export function Hero() {
     <>
       <section
         id="home"
+        ref={heroRef}
         aria-labelledby="hero-title"
         data-sparkle-zone=""
         onPointerMove={heroMove}
         style={{
           position: "relative",
-          overflow: "hidden",
+          zIndex: "5",
+          // x is always clipped; y opens up while the gold bottle flies down to the scent finder.
+          overflowX: "clip",
+          overflowY: "hidden",
           isolation: "isolate",
           "--sy": "0",
           background: "radial-gradient(70% 60% at 50% 46%, #FBF7F2 0%, #F3E8DC 70%, #EBDACB 100%)",
@@ -242,6 +250,7 @@ export function Hero() {
           </svg>
         </div>
         <div
+          ref={flyRef}
           style={{
             position: "absolute",
             zIndex: "2",
@@ -249,7 +258,6 @@ export function Hero() {
             bottom: "clamp(-20px,1vw,24px)",
             width: "clamp(150px,28vw,470px)",
             pointerEvents: "none",
-            transform: "translate3d(0, calc(var(--sy) * -0.22px), 0) rotate(calc(var(--sy) * -0.012deg))",
             willChange: "transform",
           }}
         >
@@ -296,7 +304,7 @@ export function Hero() {
             bottom: "clamp(-30px,0vw,16px)",
             width: "clamp(160px,30vw,500px)",
             pointerEvents: "none",
-            transform: "translate3d(0, calc(var(--sy) * -0.38px), 0) rotate(calc(var(--sy) * 0.015deg))",
+            transform: "translate3d(0, calc(var(--sy) * -0.6px), 0) rotate(calc(var(--sy) * 0.015deg))",
             willChange: "transform",
           }}
         >

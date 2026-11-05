@@ -143,6 +143,7 @@ export function ScentFinder() {
             </p>
           </div>{" "}
           <div
+            id="finder-card"
             data-reveal=""
             data-d="100"
             style={{
