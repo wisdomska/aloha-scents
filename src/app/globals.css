@@ -243,12 +243,6 @@ section[id] {
   position: sticky;
   top: var(--sticky-top);
 }
-@media (max-width: 879.98px) {
-  .sticky-panel--services {
-    position: relative;
-    top: auto;
-  }
-}
 @media (max-width: 959.98px) {
   .sticky-panel--contact {
     position: relative;

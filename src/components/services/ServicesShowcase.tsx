@@ -4,10 +4,34 @@ import { Fragment, useState, type MouseEvent } from "react";
 import Link from "next/link";
 import { useSite } from "@/components/providers/SiteProvider";
 import { SERVICES } from "@/content/site";
+import styles from "./ServicesShowcase.module.css";
+
+/** Matches the CSS breakpoint where the list and photo panel stack. */
+const STACKED = "(max-width: 879.98px)";
 
 export function ServicesShowcase() {
-  const { goFinder, startRequest, isFinePointer } = useSite();
+  const { goFinder, startRequest, isFinePointer, isReduced } = useSite();
   const [svc, setSvc] = useState(0);
+
+  /**
+   * On stacked layouts, opening an item collapses the (taller) open one above it,
+   * which can push the new item off-screen. Bring it back into view once it settles.
+   */
+  const open = (i: number) => {
+    setSvc(i);
+    if (!window.matchMedia(STACKED).matches) return;
+    setTimeout(
+      () => {
+        const btn = document.getElementById("svc-b" + i);
+        if (!btn) return;
+        const top = btn.getBoundingClientRect().top;
+        const headerOffset = 76;
+        if (top < headerOffset || top > window.innerHeight * 0.55)
+          window.scrollTo({ top: top + window.scrollY - headerOffset, behavior: isReduced() ? "auto" : "smooth" });
+      },
+      isReduced() ? 0 : 520,
+    );
+  };
 
   const actions: { href: string; onClick: (e: MouseEvent) => void }[] = [
     { href: "/#finder", onClick: goFinder(null, 0) },
@@ -60,7 +84,7 @@ export function ServicesShowcase() {
       imgOp: on ? 1 : 0,
       imgScale: on ? 1 : 1.08,
       imgHidden: !on,
-      select: () => setSvc(i),
+      select: () => open(i),
       preview: () => {
         if (isFinePointer() && svc !== i) setSvc(i);
       },
@@ -212,6 +236,33 @@ export function ServicesShowcase() {
                             transition: "opacity 400ms ease 100ms, transform 500ms cubic-bezier(.23,1,.32,1) 60ms",
                           }}
                         >
+                          <div className={styles.inline} data-open={v.expanded} aria-hidden={!v.expanded}>
+                            <div className={styles.frame}>
+                              <div className={styles.window}>
+                                <div
+                                  role="img"
+                                  aria-label={v.alt}
+                                  className={styles.photo}
+                                  style={{ background: v.ph }}
+                                />
+                                <div aria-hidden="true" className={styles.shade} />
+                                <div className={styles.caption}>
+                                  <p className={styles.label}>
+                                    <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true">
+                                      <path
+                                        fill="#C99A5B"
+                                        d="M12 0C12.6 7.2 16.8 11.4 24 12C16.8 12.6 12.6 16.8 12 24C11.4 16.8 7.2 12.6 0 12C7.2 11.4 11.4 7.2 12 0Z"
+                                      />
+                                    </svg>
+                                    {v.label}
+                                  </p>
+                                  <p aria-hidden="true" className={styles.num}>
+                                    {v.n}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                           <p
                             style={{
                               margin: "0",
@@ -274,7 +325,7 @@ export function ServicesShowcase() {
               <div style={{ borderTop: "1px solid rgba(46,26,22,.16)" }} />
             </div>{" "}
             <div
-              className="sticky-panel sticky-panel--services"
+              className={`sticky-panel ${styles.visual}`}
               data-reveal=""
               data-d="100"
               style={{
