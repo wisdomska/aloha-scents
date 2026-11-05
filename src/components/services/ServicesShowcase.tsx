@@ -274,13 +274,12 @@ export function ServicesShowcase() {
               <div style={{ borderTop: "1px solid rgba(46,26,22,.16)" }} />
             </div>{" "}
             <div
+              className="sticky-panel sticky-panel--services"
               data-reveal=""
               data-d="100"
               style={{
                 flex: "1 1 340px",
                 minWidth: "0",
-                position: "sticky",
-                top: "var(--sticky-top)",
                 display: "flex",
                 justifyContent: "center",
               }}

@@ -235,3 +235,23 @@ section[id] {
     transition-duration: 1ms !important;
   }
 }
+
+/* ---------- Sticky side panels ----------
+   Only sticky while they sit beside their content. Once the columns stack
+   (narrow screens), sticking would make the panel float over the list below. */
+.sticky-panel {
+  position: sticky;
+  top: var(--sticky-top);
+}
+@media (max-width: 879.98px) {
+  .sticky-panel--services {
+    position: relative;
+    top: auto;
+  }
+}
+@media (max-width: 959.98px) {
+  .sticky-panel--contact {
+    position: relative;
+    top: auto;
+  }
+}

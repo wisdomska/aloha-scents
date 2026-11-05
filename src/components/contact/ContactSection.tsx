@@ -1108,10 +1108,9 @@ export function ContactSection() {
             )}
           </div>{" "}
           <aside
+            className="sticky-panel sticky-panel--contact"
             aria-label="Other ways to reach us"
             style={{
-              position: "sticky",
-              top: "var(--sticky-top)",
               alignSelf: "flex-start",
               flex: "1 1 300px",
               minWidth: "0",
