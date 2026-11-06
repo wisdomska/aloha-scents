@@ -13,6 +13,9 @@ export const IMG = {
   him: [U("79FmeCtL9NE"), U("AdfA5C0c12M"), U("Qyp0OvNhPyc"), U("eX-FeKAgPe0")],
   occasions: [PX(6650015), U("FDTlWHmwIz8"), PX(1050256), U("Qyp0OvNhPyc")],
   catalogue: [U("79FmeCtL9NE"), U("UaO58q6ioxI"), PX(9832103), U("n8BjsYWTH8w"), PX(6650015)],
+  /** Services hero: hands wrapping a gift, and a small stack of gift boxes. */
+  wrapping: PX(5970866),
+  giftBoxes: PX(4271686),
   services: [PX(1050256), PX(9832103), U("FDTlWHmwIz8"), U("W7AyAs7azHc")],
 } as const;
 
